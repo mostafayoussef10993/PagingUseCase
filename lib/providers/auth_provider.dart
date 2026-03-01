@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/core/dio_client.dart';
-import 'package:pagnation_usecase/core/secure_storage_service.dart';
+import 'package:pagnation_usecase/Helper/dio_client.dart';
+import 'package:pagnation_usecase/Helper/secure_storage_service.dart';
 import 'package:pagnation_usecase/data/auth_remote_data_source.dart';
 import 'package:pagnation_usecase/models/user.dart';
 

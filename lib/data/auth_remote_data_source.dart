@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pagnation_usecase/models/login_response.dart';
-import 'package:pagnation_usecase/utils/api_endpoints.dart';
+import 'package:pagnation_usecase/Helper/api_endpoints.dart';
 
 class AuthRemoteDataSource {
   final Dio _dio;
