@@ -24,7 +24,6 @@ class DioClient {
           }
           return handler.next(options);
         },
-        //TODO: I must reedit error handling here , so it can handle token refresh and retry the failed request
         onError: (DioException e, handler) async {
           return handler.next(e);
         },

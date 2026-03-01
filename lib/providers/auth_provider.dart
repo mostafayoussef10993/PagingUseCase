@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pagnation_usecase/Helper/api_result.dart';
 import 'package:pagnation_usecase/Helper/dio_client.dart';
 import 'package:pagnation_usecase/Helper/secure_storage_service.dart';
 import 'package:pagnation_usecase/data/auth_remote_data_source.dart';
+import 'package:pagnation_usecase/models/login_response.dart';
 import 'package:pagnation_usecase/models/user.dart';
 
-//TODO: Naming
-// note: logic, usecase, provider. viewmodel =====> we do all the logic
 class AuthProvider with ChangeNotifier {
   User? _user;
   bool _isLoading = false;
@@ -25,10 +25,12 @@ class AuthProvider with ChangeNotifier {
     _dataSource = AuthRemoteDataSource(DioClient().instance);
     _loadSession();
   }
-
+  // check if there is a valid session (token) on app start
   Future<void> _loadSession() async {
     try {
       final token = await _storage.getAccessToken();
+
+      //ignore saved tokens
 
       if (token != null) {
         _user = null;
@@ -50,12 +52,14 @@ class AuthProvider with ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
 
-    try {
-      final response = await _dataSource.login(
-        identifier: identifier,
-        password: password,
-        type: type,
-      );
+    final result = await _dataSource.login(
+      identifier: identifier,
+      password: password,
+      type: type,
+    );
+
+    if (result is Success<LoginResponse>) {
+      final response = result.data;
 
       await _storage.saveTokens(
         accessToken: response.accessToken,
@@ -64,23 +68,28 @@ class AuthProvider with ChangeNotifier {
 
       _user = response.user;
       _errorMessage = null;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _errorMessage = e.toString().replaceFirst('Exception: ', '');
-      notifyListeners();
-      return false;
-    } finally {
       _isLoading = false;
       notifyListeners();
+      return true;
+    } else if (result is Failure<LoginResponse>) {
+      _errorMessage = result.message;
+      _isLoading = false;
+      notifyListeners();
+      return false;
     }
+
+    _isLoading = false;
+    notifyListeners();
+    return false;
   }
 
+  //log out by clearing tokens and user data
   Future<void> logout() async {
     await _storage.clearAll();
     _user = null;
     notifyListeners();
   }
+  // Clear error message (e.g., when user starts editing form again)
 
   void clearError() {
     _errorMessage = null;
