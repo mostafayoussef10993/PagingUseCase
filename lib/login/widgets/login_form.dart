@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/home/home_screen.dart';
 import 'package:pagnation_usecase/login/widgets/identifier_field.dart';
 import 'package:pagnation_usecase/login/widgets/password_field.dart';
-import 'package:pagnation_usecase/providers/auth_provider.dart';
-import 'package:pagnation_usecase/Helper/auth_error_message.dart';
+import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
+import 'package:pagnation_usecase/auth/auth_error_message.dart';
 import 'package:pagnation_usecase/login/widgets/login_button.dart';
 import 'package:provider/provider.dart';
 // This widget is the login form that appears on the login screen.

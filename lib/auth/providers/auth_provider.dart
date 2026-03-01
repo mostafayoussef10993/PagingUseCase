@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/Helper/api_result.dart';
 import 'package:pagnation_usecase/Helper/dio_client.dart';
 import 'package:pagnation_usecase/Helper/secure_storage_service.dart';
-import 'package:pagnation_usecase/data/auth_remote_data_source.dart';
-import 'package:pagnation_usecase/models/login_response.dart';
-import 'package:pagnation_usecase/models/user.dart';
+import 'package:pagnation_usecase/auth/auth_remote_data_source.dart';
+import 'package:pagnation_usecase/login/models/login_response.dart';
+import 'package:pagnation_usecase/login/models/user.dart';
 
 class AuthProvider with ChangeNotifier {
   User? _user;
