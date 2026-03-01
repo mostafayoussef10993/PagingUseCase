@@ -1,9 +1,7 @@
-// ...existing code...
 import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-// adjust this import path if your AuthProvider is located elsewhere
-import 'package:pagnation_usecase/presentation/splash/splash_screen.dart';
+import 'package:pagnation_usecase/splash/splash_screen.dart';
 
 void main() {
   runApp(
