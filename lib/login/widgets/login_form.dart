@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/presentation/home/home_screen.dart';
+import 'package:pagnation_usecase/home/home_screen.dart';
+import 'package:pagnation_usecase/login/widgets/identifier_field.dart';
+import 'package:pagnation_usecase/login/widgets/password_field.dart';
 import 'package:pagnation_usecase/providers/auth_provider.dart';
-import 'package:pagnation_usecase/widgets/auth_error_message.dart';
-import 'package:pagnation_usecase/widgets/login_button.dart';
+import 'package:pagnation_usecase/Helper/auth_error_message.dart';
+import 'package:pagnation_usecase/login/widgets/login_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
@@ -55,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Optional: you can add logo / title here
+              // Optional later :  add logo / title here
               const SizedBox(height: 32),
               Text(
                 'Welcome Back',
@@ -74,61 +76,11 @@ class _LoginFormState extends State<LoginForm> {
               ),
               const SizedBox(height: 48),
 
-              TextFormField(
-                controller: _identifierController,
-                decoration: const InputDecoration(
-                  labelText: 'Identifier',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.person_outline),
-                ),
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.next,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your identifier';
-                  }
-                  return null;
-                },
-              ),
+              IdentifierField(controller: _identifierController),
               const SizedBox(height: 20),
 
-              TextFormField(
-                controller: _passwordController,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock_outline),
-                ),
-                obscureText: true,
-                textInputAction: TextInputAction.done,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
+              PasswordField(controller: _passwordController),
 
-              TextFormField(
-                controller: _typeController,
-                decoration: const InputDecoration(
-                  labelText: 'Type',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.category_outlined),
-                ),
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.done,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your type';
-                  }
-                  return null;
-                },
-              ),
               const SizedBox(height: 32),
 
               AuthErrorMessage(error: auth.errorMessage),

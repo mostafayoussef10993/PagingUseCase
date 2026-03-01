@@ -18,6 +18,12 @@ class IdentifierField extends StatelessWidget {
       ),
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter your identifier';
+        }
+        return null;
+      },
     );
   }
 }
