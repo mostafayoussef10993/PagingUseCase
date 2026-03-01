@@ -34,7 +34,8 @@ dependencies:
   provider: 
   shared_preferences:
   dio: 
-  flutter_secure_storage:  
+  flutter_secure_storage: 
+  pretty_dio_logger:  
 
 
 
