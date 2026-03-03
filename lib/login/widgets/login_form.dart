@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pagnation_usecase/helper/routes.dart';
 import 'package:pagnation_usecase/home/home_screen.dart';
 import 'package:pagnation_usecase/login/widgets/identifier_field.dart';
 import 'package:pagnation_usecase/login/widgets/password_field.dart';
@@ -38,10 +39,7 @@ class _LoginFormState extends State<LoginForm> {
     );
     if (!mounted) return;
     if (success) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+      Navigator.pushReplacementNamed(context, Routes.home);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Login successful!')));

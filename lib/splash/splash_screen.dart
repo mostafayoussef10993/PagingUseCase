@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
-import 'package:pagnation_usecase/home/home_screen.dart';
-import 'package:pagnation_usecase/login/screen/login_screen.dart';
+import 'package:pagnation_usecase/helper/routes.dart';
 import 'package:pagnation_usecase/helper/image_asset_path.dart';
 import 'package:provider/provider.dart';
 
@@ -23,13 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       if (!mounted) return;
       final auth = context.read<AuthProvider>();
-      final Widget destination = auth.isLoggedIn
-          ? const HomeScreen()
-          : const LoginScreen();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => destination),
-      );
+      final String route = auth.isLoggedIn ? Routes.home : Routes.login;
+      Navigator.pushReplacementNamed(context, route);
     });
   }
 
