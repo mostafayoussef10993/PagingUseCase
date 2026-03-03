@@ -3,9 +3,10 @@ import 'package:pagnation_usecase/helper/secure_storage_service.dart';
 import 'package:pagnation_usecase/helper/api_endpoints.dart';
 
 class DioClient {
+  final void Function()? onUnauthorized;
   late final Dio _dio;
 
-  DioClient() {
+  DioClient({this.onUnauthorized}) {
     _dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
@@ -25,6 +26,13 @@ class DioClient {
           return handler.next(options);
         },
         onError: (DioException e, handler) async {
+          final statusCode = e.response?.statusCode;
+          // Check for unauthorized status codes
+          if (statusCode == 401 || statusCode == 403) {
+            // Clear tokens and user data
+            await SecureStorageService().clearAll();
+            onUnauthorized?.call();
+          }
           return handler.next(e);
         },
       ),

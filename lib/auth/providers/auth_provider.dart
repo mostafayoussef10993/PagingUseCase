@@ -20,20 +20,28 @@ class AuthProvider with ChangeNotifier {
 
   final _storage = SecureStorageService();
   late final AuthRemoteDataSource _dataSource;
+  // Initialize data source and load session on provider creation
 
   AuthProvider() {
-    _dataSource = AuthRemoteDataSource(DioClient().instance);
+    _dataSource = AuthRemoteDataSource(
+      DioClient(
+        // Pass the unauthorized callback to handle token expiration globally
+        onUnauthorized: _handleUnauthorized,
+      ).instance,
+    );
     _loadSession();
   }
+
   // check if there is a valid session (token) on app start
   Future<void> _loadSession() async {
     try {
       final token = await _storage.getAccessToken();
 
-      //ignore saved tokens
-
       if (token != null) {
-        _user = null;
+        final storedUser = await _storage.getUser();
+        if (storedUser != null) {
+          _user = storedUser;
+        }
       }
     } catch (e) {
       // silent fail
@@ -65,6 +73,7 @@ class AuthProvider with ChangeNotifier {
         accessToken: response.accessToken,
         refreshToken: response.refreshToken,
       );
+      await _storage.saveUser(response.user);
 
       _user = response.user;
       _errorMessage = null;
@@ -94,5 +103,12 @@ class AuthProvider with ChangeNotifier {
   void clearError() {
     _errorMessage = null;
     notifyListeners();
+  }
+
+  // Logging out user if token is invalid or expired
+
+  void _handleUnauthorized() {
+    // clear whatever is in storage and notify listeners to update UI
+    logout();
   }
 }

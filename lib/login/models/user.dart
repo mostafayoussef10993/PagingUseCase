@@ -73,4 +73,29 @@ class User {
       unreadNotificationsCount: json['unread_notifications_count'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'type': type,
+      'active': active,
+      'name': name,
+      'username': username,
+      'contact_person': contactPerson,
+      'email': email,
+      'phone': phone,
+      'code': code,
+      'balance': balance,
+      'seller_id': sellerId,
+      'commercial_num': commercialNum,
+      'national_id': nationalId,
+      'license_num': licenseNum,
+      'location_id': locationId,
+      'customer_groups_ids': customerGroupsIds,
+      'wallet_id': walletId,
+      'login_method': loginMethod,
+      'cart_items_count': cartItemsCount,
+      'unread_notifications_count': unreadNotificationsCount,
+    };
+  }
 }

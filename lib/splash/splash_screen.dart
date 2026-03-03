@@ -18,15 +18,17 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    //wait 5 secs and  then navgigate to login screen
+    //wait 5 secs and  then navgigate to home screen or login screen according to login state
 
     Future.delayed(const Duration(seconds: 5), () {
       if (!mounted) return;
       final auth = context.read<AuthProvider>();
-      Widget next = auth.isLoggedIn ? const HomeScreen() : const LoginScreen();
+      final Widget destination = auth.isLoggedIn
+          ? const HomeScreen()
+          : const LoginScreen();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => next),
+        MaterialPageRoute(builder: (_) => destination),
       );
     });
   }
