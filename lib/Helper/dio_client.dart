@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:pagnation_usecase/Helper/secure_storage_service.dart';
-import 'package:pagnation_usecase/Helper/api_endpoints.dart';
+import 'package:pagnation_usecase/helper/secure_storage_service.dart';
+import 'package:pagnation_usecase/helper/api_endpoints.dart';
 
 class DioClient {
   late final Dio _dio;

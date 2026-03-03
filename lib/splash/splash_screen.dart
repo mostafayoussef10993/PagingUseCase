@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
+import 'package:pagnation_usecase/home/home_screen.dart';
 import 'package:pagnation_usecase/login/screen/login_screen.dart';
-import 'package:pagnation_usecase/Helper/image_asset_path.dart';
+import 'package:pagnation_usecase/helper/image_asset_path.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,14 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
     //wait 5 secs and  then navgigate to login screen
 
     Future.delayed(const Duration(seconds: 5), () {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => LoginScreen(),
-          ), //TODO: navigation routes
-        );
-      }
+      if (!mounted) return;
+      final auth = context.read<AuthProvider>();
+      Widget next = auth.isLoggedIn ? const HomeScreen() : const LoginScreen();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => next),
+      );
     });
   }
 

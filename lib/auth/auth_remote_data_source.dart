@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:pagnation_usecase/Helper/api_error_handler.dart';
-import 'package:pagnation_usecase/Helper/api_result.dart';
+import 'package:pagnation_usecase/helper/api_error_handler.dart';
+import 'package:pagnation_usecase/helper/api_result.dart';
 import 'package:pagnation_usecase/login/models/login_response.dart';
-import 'package:pagnation_usecase/Helper/api_endpoints.dart';
+import 'package:pagnation_usecase/helper/api_endpoints.dart';
 
 // This class is responsible for making API calls related to authentication, such as login.
 

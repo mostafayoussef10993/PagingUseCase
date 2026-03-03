@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/Helper/api_result.dart';
-import 'package:pagnation_usecase/Helper/dio_client.dart';
-import 'package:pagnation_usecase/Helper/secure_storage_service.dart';
+import 'package:pagnation_usecase/helper/api_result.dart';
+import 'package:pagnation_usecase/helper/dio_client.dart';
+import 'package:pagnation_usecase/helper/secure_storage_service.dart';
 import 'package:pagnation_usecase/auth/auth_remote_data_source.dart';
 import 'package:pagnation_usecase/login/models/login_response.dart';
 import 'package:pagnation_usecase/login/models/user.dart';

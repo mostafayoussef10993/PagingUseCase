@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/providers/auth_provider.dart';
+import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pagnation_usecase/splash/splash_screen.dart';
 
