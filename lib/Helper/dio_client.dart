@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pagnation_usecase/helper/secure_storage_service.dart';
-import 'package:pagnation_usecase/helper/api_endpoints.dart';
+import 'package:pagnation_usecase/helper/api_constants.dart';
 
 class DioClient {
   final void Function()? onUnauthorized;
@@ -9,7 +9,7 @@ class DioClient {
   DioClient({this.onUnauthorized}) {
     _dio = Dio(
       BaseOptions(
-        baseUrl: ApiConstants.baseUrl,
+        baseUrl: ApiConstants.authbaseUrl,
         connectTimeout: const Duration(seconds: 12),
         receiveTimeout: const Duration(seconds: 12),
         headers: {'Accept': 'application/json'},
