@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +16,8 @@ class ProductProvider with ChangeNotifier {
   String? get errorMessage => _errorMessage;
 
   Future<void> fetchProducts() async {
+    developer.log('Starting fetchProducts()', name: 'ProductProvider');
+
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
@@ -22,19 +25,45 @@ class ProductProvider with ChangeNotifier {
     try {
       final response = await http.get(GetBestProducts.uri);
 
+      developer.log(
+        'Response received',
+        name: 'ProductProvider',
+        error: 'StatusCode: ${response.statusCode}',
+      );
+
+      developer.log('Response body: ${response.body}', name: 'ProductProvider');
+
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         final List productsJson = data['data'];
+
+        developer.log(
+          'Products count: ${productsJson.length}',
+          name: 'ProductProvider',
+        );
+
         _products = productsJson.map((json) => Product.fromJson(json)).toList();
       } else {
         _errorMessage =
             'Failed to load products (status ${response.statusCode})';
+
+        developer.log(_errorMessage!, name: 'ProductProvider', level: 1000);
       }
-    } catch (e) {
+    } catch (e, stack) {
       _errorMessage = e.toString();
+
+      developer.log(
+        'Error fetching products',
+        name: 'ProductProvider',
+        error: e,
+        stackTrace: stack,
+        level: 1000,
+      );
     } finally {
       _isLoading = false;
       notifyListeners();
+
+      developer.log('fetchProducts() finished', name: 'ProductProvider');
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/helper/api_result.dart';
-import 'package:pagnation_usecase/helper/dio_client.dart';
+import 'package:pagnation_usecase/helper/api/api_constants.dart';
+import 'package:pagnation_usecase/helper/api/api_result.dart';
+import 'package:pagnation_usecase/helper/dio/dio_client_model.dart';
 import 'package:pagnation_usecase/helper/secure_storage_service.dart';
 import 'package:pagnation_usecase/auth/auth_remote_data_source.dart';
 import 'package:pagnation_usecase/login/models/login_response.dart';
@@ -23,12 +24,12 @@ class AuthProvider with ChangeNotifier {
   // Initialize data source and load session on provider creation
 
   AuthProvider() {
-    _dataSource = AuthRemoteDataSource(
-      DioClient(
-        // Pass the unauthorized callback to handle token expiration globally
-        onUnauthorized: _handleUnauthorized,
-      ).instance,
+    final authDio = DioClient.create(
+      ApiConstants.authbaseUrl,
+      onUnauthorized: _handleUnauthorized,
     );
+
+    _dataSource = AuthRemoteDataSource(authDio);
     _loadSession();
   }
 

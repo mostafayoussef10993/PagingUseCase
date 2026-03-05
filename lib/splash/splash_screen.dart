@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
 import 'package:pagnation_usecase/helper/routes.dart';
-import 'package:pagnation_usecase/helper/image_asset_path.dart';
+import 'package:pagnation_usecase/helper/assets/image_asset_path.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
