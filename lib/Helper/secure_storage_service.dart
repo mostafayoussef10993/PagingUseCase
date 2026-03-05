@@ -38,6 +38,5 @@ class SecureStorageService {
   }
 
   //Clearing all stored data, including tokens and user information
-  @override
   Future<void> clearAll() => _storage.deleteAll();
 }
