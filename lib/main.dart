@@ -3,12 +3,19 @@ import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
 import 'package:pagnation_usecase/helper/routes.dart';
 import 'package:pagnation_usecase/home/home_screen.dart';
 import 'package:pagnation_usecase/login/screen/login_screen.dart';
+import 'package:pagnation_usecase/products/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pagnation_usecase/splash/splash_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(create: (_) => AuthProvider(), child: const MyApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
