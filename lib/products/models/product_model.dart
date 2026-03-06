@@ -21,17 +21,23 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      productId: json['product_id'],
-      sellerId: json['seller_id'],
-      discount: json['discount'],
-      priceAfterDiscount: json['price_after_discount'],
-
+      productId: _toInt(json['product_id']),
+      sellerId: _toInt(json['seller_id']),
+      discount: _toInt(json['discount']),
+      priceAfterDiscount: _toInt(json['price_after_discount']),
       title: json['product']?['title'],
-      price: json['product']?['price'],
-
+      price: _toInt(json['product']?['price']),
       storeName: json['seller']?['store_name'],
-
       photo: json['seller']?['photo'],
     );
+  }
+
+  // Helper function to convert dynamic values to int
+  static int? _toInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is double) return value.toInt();
+    if (value is String) return int.tryParse(value);
+    return null;
   }
 }

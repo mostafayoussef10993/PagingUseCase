@@ -4,9 +4,8 @@ import 'package:pagnation_usecase/products/constants/products_constants.dart';
 class GetBestProducts {
   static String get endpoint => ApiConstants.productsEndpoint;
   
-  static Map<String, dynamic> getQueryParameters({String? cursor}) => {
+  static Map<String, dynamic> get queryParameters => {
     "seller_id": ProductsConstants.sellerId,
     "paginate": ProductsConstants.paginate,
-    if (cursor != null) "cursor": cursor,
   };
 }
