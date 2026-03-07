@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pagnation_usecase/helper/dio/dio_logger.dart';
 import 'package:pagnation_usecase/helper/secure_storage_service.dart';
 
 class DioClient {
@@ -11,6 +12,8 @@ class DioClient {
         headers: {'Accept': 'application/json'},
       ),
     );
+
+    setupDioLogger(dio);
 
     dio.interceptors.add(
       InterceptorsWrapper(

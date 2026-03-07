@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/auth/providers/auth_provider.dart';
+import 'package:pagnation_usecase/helper/providers/app_providers.dart';
 import 'package:pagnation_usecase/helper/routes.dart';
 import 'package:pagnation_usecase/home/home_screen.dart';
 import 'package:pagnation_usecase/login/screen/login_screen.dart';
-import 'package:pagnation_usecase/products/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pagnation_usecase/splash/splash_screen.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => ProductProvider()),
-      ],
-      child: const MyApp(),
-    ),
+    MultiProvider(providers: AppProviders.providers, child: const MyApp()),
   );
 }
 
