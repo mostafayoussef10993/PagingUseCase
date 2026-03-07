@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/products/models/product_model.dart';
 import 'package:pagnation_usecase/products/provider/prod_api_service.dart';
+// handles data parsing
 
 class ProductRepository {
   final ProductApiService api;
@@ -7,14 +9,29 @@ class ProductRepository {
   ProductRepository(this.api);
 
   Future<Map<String, dynamic>> fetchProducts(String? cursor) async {
-    final response = await api.fetchProducts(cursor);
+    try {
+      final response = await api.fetchProducts(cursor);
 
-    final data = response.data;
+      if (response.statusCode != 200) {
+        throw Exception("API failed with ${response.statusCode}");
+      }
 
-    final products = (data['data'] as List)
-        .map((e) => Product.fromJson(e))
-        .toList();
+      final data = response.data;
 
-    return {"products": products, "cursor": data['meta']?['next_cursor']};
+      debugPrint("📦 Parsing products...");
+
+      final products = (data['data'] as List)
+          .map((json) => Product.fromJson(json))
+          .toList();
+
+      final nextCursor = data['meta']?['next_cursor'];
+
+      debugPrint("➡️ Next cursor: $nextCursor");
+
+      return {"products": products, "cursor": nextCursor};
+    } catch (e) {
+      debugPrint("❌ Repository error: $e");
+      rethrow;
+    }
   }
 }
