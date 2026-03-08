@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text("Best Seller Products")),
       body: const Column(
         children: [
-          FetchButton(),
+          FetchProductsButton(),
           Expanded(child: ProductListView()),
         ],
       ),

@@ -3,8 +3,8 @@ import 'package:pagnation_usecase/products/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 //Button to fetch products in home screen
 
-class FetchButton extends StatelessWidget {
-  const FetchButton({super.key});
+class FetchProductsButton extends StatelessWidget {
+  const FetchProductsButton({super.key});
 
   @override
   Widget build(BuildContext context) {
