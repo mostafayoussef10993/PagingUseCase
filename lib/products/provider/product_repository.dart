@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/products/models/product_model.dart';
 import 'package:pagnation_usecase/products/provider/product_api_service.dart';
 // handles data parsing
+/// Responsibilities:
+/// - Request product data from the API service.
+/// - Validate the API response.
+/// - Convert JSON response into a list of [Product] objects.
+/// - Extract pagination cursor for loading more products.
 
 class ProductRepository {
   final ProductApiService api;
