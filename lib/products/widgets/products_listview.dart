@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/products/provider/product_provider.dart';
 import 'package:provider/provider.dart';
-import 'product_card.dart';
+import 'products_card.dart';
 
 class ProductListView extends StatefulWidget {
   const ProductListView({super.key});

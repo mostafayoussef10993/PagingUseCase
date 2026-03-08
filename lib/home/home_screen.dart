@@ -1,7 +1,7 @@
 // screens/home_screen.dart
 import 'package:flutter/material.dart';
-import 'package:pagnation_usecase/products/widgets/fetch_prod_button.dart';
-import 'package:pagnation_usecase/products/widgets/prod_listview.dart';
+import 'package:pagnation_usecase/products/widgets/fetch_products_button.dart';
+import 'package:pagnation_usecase/products/widgets/products_listview.dart';
 
 class HomeScreen extends StatelessWidget {
   // No longer needs StatefulWidget!

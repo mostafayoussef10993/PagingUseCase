@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/products/models/product_model.dart';
-import 'package:pagnation_usecase/products/provider/prod_api_service.dart';
+import 'package:pagnation_usecase/products/provider/product_api_service.dart';
 // handles data parsing
 
 class ProductRepository {

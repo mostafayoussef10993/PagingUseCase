@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pagnation_usecase/products/models/product_model.dart';
-import 'package:pagnation_usecase/products/provider/prod_repository.dart';
+import 'package:pagnation_usecase/products/provider/product_repository.dart';
 
 class ProductProvider with ChangeNotifier {
   final ProductRepository repository;
