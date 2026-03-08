@@ -7,6 +7,10 @@ import 'package:pagnation_usecase/products/provider/product_repository.dart';
 import 'package:pagnation_usecase/products/provider/product_api_service.dart';
 import 'package:provider/single_child_widget.dart';
 
+// a class that handles all the Providers in the app
+//to implement it in the main.dart file
+//tok keep the lean architecture structure
+
 class AppProviders {
   static List<SingleChildWidget> providers = [
     ChangeNotifierProvider(create: (_) => AuthProvider()),
