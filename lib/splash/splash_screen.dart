@@ -16,15 +16,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    _redirect();
+  }
 
-    //wait 5 secs and  then navgigate to home screen or login screen according to login state
+  Future<void> _redirect() async {
+    // Keep your 5-second splash animation
+    await Future.delayed(const Duration(seconds: 5));
 
-    Future.delayed(const Duration(seconds: 5), () {
-      if (!mounted) return;
-      final auth = context.read<AuthProvider>();
-      final String route = auth.isLoggedIn ? Routes.home : Routes.login;
-      Navigator.pushReplacementNamed(context, route);
-    });
+    if (!mounted) return;
+
+    final auth = context.read<AuthProvider>();
+
+    // Wait for _loadSession() to finish (to make sure of the authentication state)
+    if (!auth.isInitialized) {
+      await Future.doWhile(() async {
+        await Future.delayed(const Duration(milliseconds: 50));
+        return !context.read<AuthProvider>().isInitialized;
+      });
+    }
+
+    if (!mounted) return;
+
+    final String route = auth.isLoggedIn ? Routes.home : Routes.login;
+    Navigator.pushReplacementNamed(context, route);
   }
 
   @override
