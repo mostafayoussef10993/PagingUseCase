@@ -6,17 +6,14 @@ import 'package:pagnation_usecase/products/provider/product_provider.dart';
 import 'package:pagnation_usecase/products/provider/product_repository.dart';
 import 'package:pagnation_usecase/products/provider/product_api_service.dart';
 import 'package:provider/single_child_widget.dart';
-
-// a class that handles all the Providers in the app
-//to implement it in the main.dart file
-//tok keep the lean architecture structure
+//App providers class used to handle the providers in the whole app
 
 class AppProviders {
   static List<SingleChildWidget> providers = [
     ChangeNotifierProvider(create: (_) => AuthProvider()),
 
     Provider(
-      create: (_) =>
+      create: (context) =>
           ProductApiService(DioClient.create(ApiConstants.prodbaseUrl)),
     ),
 
