@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "335770620730",
+    "project_id": "pagnationproducts",
+    "storage_bucket": "pagnationproducts.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335770620730:android:b8bd85f8db3fb845373603",
+        "android_client_info": {
+          "package_name": "com.example.pagnation_usecase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2Kljz0eNLNKCi0c30SOvFdkkgmiGyPqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
