@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
-            child: const Padding(
+            child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 24),
               child: LoginForm(),
             ),
